@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders_items', function (Blueprint $table) {
+         Schema::create('orders_items', function (Blueprint $table) {
             // $table->unsignedInteger('seq')->primary();
             $table->integer('order_id');
             $table->integer('product_id');
@@ -22,11 +22,10 @@ return new class extends Migration
             $table->unsignedDouble('value')->default(0);
             // $table->unsignedDouble('discount')->nullable();
             //$table->unsignedDouble('perc_discount')->nullable();
-            $table->timestamps();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products');
-
             $table->primary(['order_id', 'product_id']);
+            $table->timestamps();
         });
     }
 
