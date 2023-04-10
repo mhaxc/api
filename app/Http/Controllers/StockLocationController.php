@@ -9,44 +9,53 @@ use Illuminate\Http\Request;
 class StockLocationController extends Controller
 {
 
-    private $model;
-    public function __construct(StockLocation $model)
-    {
-        $this->model = $model;
-    }
 
     public function index()
     {
-        $data = StockLocation::all();
-        return response()->json($data);
+        $stocklocations = StockLocation::all();
+        return response()->json([
+            'categories' => $stocklocations
+        ]);
     }
 
     public function show($id)
     {
-        $data = StockLocation::find($id);
-        return response()->json($data);
+        $stocklocations = StockLocation::findOrFail($id);
+        return response()->json($stocklocations);
     }
 
     public function store(StockLocationRequest $request)
     {
-
-        $data = StockLocation::create($request->all());
-        return response()->json($data);
+        $stocklocations = StockLocation::create($request->all());
+        return response()->json([
+            'status' => 'true',
+            'message' => "Categoria salva com sucesso!",
+            'StockLocation' => $stocklocations
+        ], 201);
     }
 
     public function update(StockLocationRequest $request, $id)
     {
+        $stocklocations = StockLocation::find($id);
 
-        $data = StockLocation::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $stocklocations->update($request->all());
+
+        return response()->json([
+            'status' => 'true',
+            'message' => "Categoria atualizada com sucesso!",
+            'StockLocation' => $stocklocations
+        ], 201);
     }
 
-    public function delete($id)
-    {
-        $data = StockLocation::find($id);
-        $data->delete();
 
-        return response()->json('', 201);
+    public function destroy($id)
+    {
+        $categories = StockLocation::find($id);
+        $categories->delete();
+        return response()->json([
+
+            'message' => "categoria deletada com sucesso"
+
+        ], 200);
     }
 }

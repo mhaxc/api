@@ -8,45 +8,53 @@ use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
-
-    private $model;
-    public function __construct(Stock $model)
-    {
-        $this->model = $model;
-    }
-
-
     public function index()
     {
-        $data = Stock::all();
-        return response()->json($data);
+        $stocks = Stock::all();
+        return response()->json([
+            'categories' => $stocks
+        ]);
     }
 
     public function show($id)
     {
-        $data = Stock::find($id);
-        return response()->json($data);
+        $stocks = Stock::findOrFail($id);
+        return response()->json($stocks);
     }
 
-    public function store(StockRequest $request)
+    public function store(Stock $request)
     {
-
-        $data = Stock::create($request->all());
-        return response()->json($data);
+        $stocks = Stock::create($request->all());
+        return response()->json([
+            'status' => 'true',
+            'message' => "Categoria salva com sucesso!",
+            'StockLocation' => $stocks
+        ], 201);
     }
 
     public function update(StockRequest $request, $id)
     {
-        $data = Stock::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $stocks = Stock::find($id);
+
+        $stocks->update($request->all());
+
+        return response()->json([
+            'status' => 'true',
+            'message' => "Categoria atualizada com sucesso!",
+            'StockLocation' => $stocks
+        ], 201);
     }
 
-    public function delete($id)
-    {
-        $data = Stock::find($id);
-        $data->delete();
 
-        return response()->json('', 201);
+    public function destroy($id)
+    {
+        $stocks = Stock::find($id);
+        $stocks->delete();
+        return response()->json([
+
+            'message' => "categoria deletada com sucesso"
+
+        ], 200);
     }
 }
+

@@ -17,14 +17,14 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $products = Product::all();
-        return response()->json($products);
+        $data = Product::all();
+        return response()->json($data);
     }
 
     public function show($id)
     {
-        $products = Product::find($id);
-        return response()->json($products);
+        $data = Product::find($id);
+        return response()->json($data);
     }
 
     public function store(ProductRequest $request)

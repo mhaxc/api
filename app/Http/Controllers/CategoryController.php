@@ -9,46 +9,60 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller{
 
 
-    private $model;
-    public function __construct(Category $model)
-    {
-        $this->model = $model;
-    }
+
 
     public function index()
     {
-        $data = $this->model->all();
-        return response()->json($data);
+        $categories = Category::all();
+        return response()->json([
+            'categories' => $categories
+        ]);
     }
 
     public function show($id)
     {
-        $data = $this->model->find($id);
-        return response()->json($data);
+        $categories = Category::findOrFail($id);
+        return response()->json($categories);
     }
 
     public function store(CategoryRequest $request)
     {
-  
+        $categories = Category::create($request->all());
+            return response()->json([
+            'status'=>'true',
+            'message' => "Categoria salva com sucesso!",
+            'Category' => $categories
+        ], 201);
 
-        $data = $this->model->create($request->all());
-        return response()->json($data);
+
     }
 
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request,$id )
     {
+        $categories = Category::find($id);
 
-        $data = $this->model->find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $categories->update($request->all());
+
+        return response()->json([
+            'status' => 'true',
+            'message' => "Categoria atualizada com sucesso!",
+            'Category' => $categories
+        ], 201);
+
     }
 
-    public function delete($id)
-    {
-        $data = $this->model->find($id);
-        $data->delete();
 
-        return response()->json('',201);
+    public function destroy($id)
+    {
+     $categories = Category::find($id);
+        $categories->delete();
+    return response()->json([
+
+          'message'=>"categoria deletada com sucesso"
+
+        ],200);
+
     }
 
 }
+

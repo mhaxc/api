@@ -9,44 +9,53 @@ use Illuminate\Http\Request;
 class TypePaymentController extends Controller
 {
 
-    private $model;
-    public function __construct(TypePayment $model)
-    {
-        $this->model = $model;
-    }
 
     public function index()
     {
-        $data = TypePayment::all();
-        return response()->json($data);
+        $typepayments = TypePayment::all();
+        return response()->json([
+            'typepayments' => $typepayments
+        ]);
     }
 
     public function show($id)
     {
-        $data = TypePayment::find($id);
-        return response()->json($data);
+        $typepayments = TypePayment::findOrFail($id);
+        return response()->json($typepayments);
     }
 
     public function store(TypePaymentRequest $request)
     {
-
-        $data = TypePayment::create($request->all());
-        return response()->json($data);
+        $typepayments = TypePayment::create($request->all());
+        return response()->json([
+            'status' => 'true',
+            'message' => "Categoria salva com sucesso!",
+            'TypePayments' => $typepayments
+        ], 201);
     }
 
     public function update(TypePaymentRequest $request, $id)
     {
+        $typepayments = TypePayment::find($id);
 
-        $data = TypePayment::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $typepayments->update($request->all());
+
+        return response()->json([
+            'status' => 'true',
+            'message' => "Categoria atualizada com sucesso!",
+            'TypePayment' => $typepayments
+        ], 201);
     }
 
-    public function delete($id)
-    {
-        $data = TypePayment::find($id);
-        $data->delete();
 
-        return response()->json('', 201);
+    public function destroy($id)
+    {
+        $typepayments = TypePayment::find($id);
+        $typepayments->delete();
+        return response()->json([
+
+            'message' => "categoria deletada com sucesso"
+
+        ], 200);
     }
 }

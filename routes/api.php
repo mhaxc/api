@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// bulks 
+// bulks
 Route::get('bulks', [BulkController::class, 'index']);
 Route::get('bulks/{slug}', [BulkController::class, 'show']);
 Route::post('bulks', [BulkController::class, 'store']);
@@ -41,11 +41,12 @@ Route::put('products/{id}', [ProductsController::class, 'update']);
 Route::delete('products/{id}', [ProductsController::class, 'delete']);
 
 //categories
-Route::get('categories', [CategoryController::class, 'index']);
-Route::get('categories/{id}', [CategoryController::class, 'show']);
-Route::post('categories', [CategoryController::class, 'store']);
-Route::put('categories/{id}', [CategoryController::class, 'update']);
-Route::delete('categories/{id}', [CategoryController::class, 'delete']);
+ Route::apiResource('categories', CategoryController::class);
+//Route::get('categories', [CategoryController::class, 'index']);
+//Route::get('categories/{id}', [CategoryController::class, 'show']);
+//Route::post('categories', [CategoryController::class, 'store']);
+//Route::put('categories/{id}', [CategoryController::class, 'update']);
+//Route::delete('categories/{id}', [CategoryController::class, 'delete']);
 
 //customers
 Route::get('customers', [CustomerController::class, 'index']);
