@@ -12,7 +12,7 @@ class StockController extends Controller
     {
         $stocks = Stock::all();
         return response()->json([
-            'categories' => $stocks
+            'Stock' => $stocks
         ]);
     }
 
@@ -27,8 +27,8 @@ class StockController extends Controller
         $stocks = Stock::create($request->all());
         return response()->json([
             'status' => 'true',
-            'message' => "Categoria salva com sucesso!",
-            'StockLocation' => $stocks
+            'message' => "estoque salva com sucesso!",
+            'Stock' => $stocks
         ], 201);
     }
 
@@ -40,7 +40,7 @@ class StockController extends Controller
 
         return response()->json([
             'status' => 'true',
-            'message' => "Categoria atualizada com sucesso!",
+            'message' => "estoque atualizada com sucesso!",
             'StockLocation' => $stocks
         ], 201);
     }
@@ -52,7 +52,7 @@ class StockController extends Controller
         $stocks->delete();
         return response()->json([
 
-            'message' => "categoria deletada com sucesso"
+            'message' => "estoque deletada com sucesso"
 
         ], 200);
     }

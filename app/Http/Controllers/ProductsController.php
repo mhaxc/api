@@ -9,43 +9,39 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
 
-    private $model;
-    public function __construct(Product $model)
-    {
-        $this->model = $model;
-    }
+
 
     public function index()
     {
-        $data = Product::all();
-        return response()->json($data);
+        $products = Product::all();
+        return response()->json($products);
     }
 
     public function show($id)
     {
-        $data = Product::find($id);
-        return response()->json($data);
+        $products = Product::find($id);
+        return response()->json($products);
     }
 
     public function store(ProductRequest $request)
     {
 
-        $data = Product::create($request->all());
-        return response()->json($data);
+        $products = Product::create($request->all());
+        return response()->json($products);
     }
 
     public function update(ProductRequest $request, $id)
     {
 
-        $data = Product::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $products = Product::find($id);
+        $products->update($request->all());
+        return response()->json($products);
     }
 
     public function delete($id)
     {
-        $data = Product::find($id);
-        $data->delete();
+        $products = Product::find($id);
+        $products->delete();
 
         return response()->json('', 201);
     }
