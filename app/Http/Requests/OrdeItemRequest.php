@@ -24,9 +24,9 @@ class OrdeItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'requeried',
-            'quantity' => 'requeried',
-            'value' => 'requeried',
+            'product_id' => 'required',
+            'quantity' => 'required',
+            'value' => 'required',
             //'data' => 'require'
         ];
     }

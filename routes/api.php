@@ -27,18 +27,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 // bulks
-Route::get('bulks', [BulkController::class, 'index']);
-Route::get('bulks/{slug}', [BulkController::class, 'show']);
-Route::post('bulks', [BulkController::class, 'store']);
-Route::put('bulks/{slug}', [BulkController::class, 'update']);
-Route::delete('bulks/{slug}', [BulkController::class, 'delete']);
+Route::apiResource('bulks', BulkController::class);
+//Route::get('bulks', [BulkController::class, 'index']);
+//Route::get('bulks/{slug}', [BulkController::class, 'show']);
+//Route::post('bulks', [BulkController::class, 'store']);
+//Route::put('bulks/{slug}', [BulkController::class, 'update']);
+//Route::delete('bulks/{slug}', [BulkController::class, 'delete']);
 
 // products
-Route::get('products', [ProductsController::class, 'index']);
-Route::get('products/{id}', [ProductsController::class, 'show']);
-Route::post('products', [ProductsController::class, 'store']);
-Route::put('products/{id}', [ProductsController::class, 'update']);
-Route::delete('products/{id}', [ProductsController::class, 'delete']);
+Route::apiResource('products', ProductsController::class);
+//Route::get('products', [ProductsController::class, 'index']);
+//Route::get('products/{id}', [ProductsController::class, 'show']);
+//Route::post('products', [ProductsController::class, 'store']);
+//Route::put('products/{id}', [ProductsController::class, 'update']);
+//Route::delete('products/{id}', [ProductsController::class, 'delete']);
 
 //categories
  Route::apiResource('categories', CategoryController::class);
@@ -49,11 +51,12 @@ Route::delete('products/{id}', [ProductsController::class, 'delete']);
 //Route::delete('categories/{id}', [CategoryController::class, 'delete']);
 
 //customers
-Route::get('customers', [CustomerController::class, 'index']);
-Route::get('customers/{id}', [CustomerController::class, 'show']);
-Route::post('customers', [CustomerController::class, 'store']);
-Route::put('customers/{id}', [CustomerController::class, 'update']);
-Route::delete('customers/{id}', [CustomerController::class, 'delete']);
+ Route::apiResource('customers', CustomerController::class);
+//Route::get('', [CustomerController::class, 'index']);
+//Route::get('customers/{id}', [CustomerController::class, 'show']);
+//Route::post('customers', [CustomerController::class, 'store']);
+//Route::put('customers/{id}', [CustomerController::class, 'update']);
+//Route::delete('customers/{id}', [CustomerController::class, 'delete']);
 
 //orders_items
 /*Route::get('orders_items', [OrderItemController::class, 'index']);
@@ -94,8 +97,9 @@ Route::put('users/{id}', [UserController::class, 'update']);
 Route::delete('users/{id}', [UserController::class, 'delete']);
 
 //type_payments
-Route::get('type_payments', [TypePaymentController::class, 'index']);
-Route::get('type_payments/{id}', [TypePaymentController::class, 'show']);
-Route::post('type_payments', [TypePaymentController::class, 'store']);
-Route::put('type_payments/{id}', [TypePaymentController::class, 'update']);
-Route::delete('type_payments/{id}', [TypePaymentController::class, 'delete']);
+Route::apiResource('type_payments', TypePaymentController::class);
+//Route::get('type_payments', [TypePaymentController::class, 'index']);
+//Route::get('type_payments/{id}', [TypePaymentController::class, 'show']);
+//::post('type_payments', [TypePaymentController::class, 'store']);
+//Route::put('type_payments/{id}', [TypePaymentController::class, 'update']);
+//Route::delete('type_payments/{id}', [TypePaymentController::class, 'delete']);

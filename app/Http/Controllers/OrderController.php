@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
 
-
     private $orders;
     public function __construct(Order $orders)
     {

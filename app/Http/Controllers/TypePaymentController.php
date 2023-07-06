@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class TypePaymentController extends Controller
 {
 
+    private $typepayments;
+    public function __construct(Typepayment $typepayments)
+
+    {
+        $this->typepayments = $typepayments;
+    }
+
+
 
     public function index()
     {
@@ -42,20 +50,23 @@ class TypePaymentController extends Controller
 
         return response()->json([
             'status' => 'true',
-            'message' => "Categoria atualizada com sucesso!",
+            'message' => "pagamento atualizada com sucesso!",
             'TypePayment' => $typepayments
-        ], 201);
+        ],201);
     }
 
 
     public function destroy($id)
     {
         $typepayments = TypePayment::find($id);
-        $typepayments->delete();
+            $typepayments->delete();
         return response()->json([
 
             'message' => "categoria deletada com sucesso"
-
-        ], 200);
+         ],200);
     }
 }
+
+
+
+

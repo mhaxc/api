@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class StockLocationController extends Controller
 {
+    private $stocklocations;
+    public function __construct(Stocklocation $stocklocations)
+
+     {
+        $this->stocklocations = $stocklocations;
+     }
+
 
 
     public function index()

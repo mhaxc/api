@@ -6,9 +6,15 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller{
+class CategoryController extends Controller
+{
 
+    private $categories;
 
+    public function __construct(Category $categories)
+        {
+        $this->categories = $categories;
+        }
 
 
     public function index()
@@ -30,7 +36,7 @@ class CategoryController extends Controller{
         $categories = Category::create($request->all());
             return response()->json([
             'status'=>'true',
-            'message' => "Categoria salva com sucesso!",
+            'message' => "categoria salva com sucesso",
             'Category' => $categories
         ], 201);
 
@@ -45,7 +51,7 @@ class CategoryController extends Controller{
 
         return response()->json([
             'status' => 'true',
-            'message' => "Categoria atualizada com sucesso!",
+            'message' => "categoria  atualizada com sucesso",
             'Category' => $categories
         ], 201);
 
@@ -58,7 +64,7 @@ class CategoryController extends Controller{
         $categories->delete();
     return response()->json([
 
-          'message'=>"categoria deletada com sucesso"
+          'message'=> "categoria deletada com sucesso"
 
         ],200);
 

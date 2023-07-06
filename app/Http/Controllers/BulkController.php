@@ -9,43 +9,69 @@ use Illuminate\Http\Request;
 class BulkController extends Controller
 {
 
-    private $model;
-    public function __construct(Bulk $model)
+
+
+    private $bulks;
+
+    public function __construct(Bulk $bulks)
     {
-        $this->model = $model;
+        $this->bulks = $bulks;
     }
 
 
     public function index()
+
     {
-        $data = $this->model->all();
-        return response()->json($data);
+        $bulks = $this->bulks->all();
+        return response()->json($bulks);
     }
 
     public function show($slug)
+
     {
-        $data = $this->model->find($slug);
-        return response()->json($data);
+        $bulks = Bulk::findOrFail($slug);
+        return response()->json($bulks);
+
     }
 
-    public function store(Request $request)
+    public function store(BulkRequest $request)
     {
-        $data = $this->model->create($request->all());
-        return response()->json($data);
+        $bulks = Bulk::create($request->all());
+        return response()->json([
+            'status' => 'true',
+            'message' => "volume salva com sucesso",
+            'Bulk' => $bulks
+        ], 201);
     }
 
-    public function update(Request $request, $slug)
+    public function update(BulkRequest $request, $slug)
     {
-        $data = $this->model->find($slug);
-        $data->update($request->all());
-        return response()->json($data);
+
+        $bulks=Bulk::find($slug);
+
+        $bulks->update($request->all());
+
+        return response()->json([
+            'status' => 'true',
+            'message' => "volume  atualizada com sucesso",
+            'Bulk' => $bulks
+        ], 201);
+
+
     }
 
-    public function delete($slug)
-    {
-        $data = $this->model->find($slug);
-        $data->delete();
+    public function destroy($slug)
 
-        return response()->json('', 201);
+    {
+        $bulks = Bulk::find($slug);
+
+        $bulks->delete();
+        return response()->json([
+
+            'message' => "volume deletada com sucesso"
+
+        ], 200);
     }
+
+
 }

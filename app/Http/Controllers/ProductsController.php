@@ -8,8 +8,11 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-
-
+    private $products;
+    public function __construct(Product $products)
+    {
+          $this->products = $products;
+    }
 
     public function index()
     {
@@ -25,7 +28,6 @@ class ProductsController extends Controller
 
     public function store(ProductRequest $request)
     {
-
         $products = Product::create($request->all());
         return response()->json($products);
     }

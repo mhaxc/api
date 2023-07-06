@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
+    private $stocks;
+    public function __construct(Stock $stocks)
+    {
+        $this->stocks = $stocks;
+   }
+
     public function index()
     {
         $stocks = Stock::all();
