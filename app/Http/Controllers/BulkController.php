@@ -34,7 +34,7 @@ class BulkController extends Controller
             return 'VOLUME NÂO ENCONTRADO';
         }else {
             return response()->json([
-            "message" => "  Volume NAO ENCONTRADO ",
+            "message" => "  Volume ",
             "bulks" => $bulks
         ]);}
 

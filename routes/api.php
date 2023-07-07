@@ -27,28 +27,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 // bulks
- Route::resource('bulks', BulkController::class,);
+ Route::resource('bulks', BulkController::class);
 
 // products
-Route::get('products', [ProductsController::class, 'index']);
-Route::get('products/{id}', [ProductsController::class, 'show']);
-Route::post('products', [ProductsController::class, 'store']);
-Route::put('products/{id}', [ProductsController::class, 'update']);
-Route::delete('products/{id}', [ProductsController::class, 'delete']);
+ Route::resource('products', ProductsController::class);
+
+//Route::get('products', [ProductsController::class, 'index']);
+//Route::get('products/{id}', [ProductsController::class, 'show']);
+//Route::post('products', [ProductsController::class, 'store']);
+//Route::put('products/{id}', [ProductsController::class, 'update']);
+//Route::delete('products/{id}', [ProductsController::class, 'delete']);
 
 //categories
-Route::get('categories', [CategoryController::class, 'index']);
-Route::get('categories/{id}', [CategoryController::class, 'show']);
-Route::post('categories', [CategoryController::class, 'store']);
-Route::put('categories/{id}', [CategoryController::class, 'update']);
-Route::delete('categories/{id}', [CategoryController::class, 'delete']);
+Route::resource('categories', CategoryController::class);
+//Route::get('categories', [CategoryController::class, 'index']);
+//Route::get('categories/{id}', [CategoryController::class, 'show']);
+//Route::post('categories', [CategoryController::class, 'store']);
+//Route::put('categories/{id}', [CategoryController::class, 'update']);
+//Route::delete('categories/{id}', [CategoryController::class, 'delete']);
 
 //customers
-Route::get('customers', [CustomerController::class, 'index']);
-Route::get('customers/{id}', [CustomerController::class, 'show']);
-Route::post('customers', [CustomerController::class, 'store']);
-Route::put('customers/{id}', [CustomerController::class, 'update']);
-Route::delete('customers/{id}', [CustomerController::class, 'delete']);
+Route::resource('customers', CustomerController::class);
+//Route::get('customers', [CustomerController::class, 'index']);
+//Route::get('customers/{id}', [CustomerController::class, 'show']);
+//Route::post('customers', [CustomerController::class, 'store']);
+//Route::put('customers/{id}', [CustomerController::class, 'update']);
+//Route::delete('customers/{id}', [CustomerController::class, 'delete']);
 
 //orders_items
 /*Route::get('orders_items', [OrderItemController::class, 'index']);
