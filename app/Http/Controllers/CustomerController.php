@@ -9,45 +9,45 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
 
-    private $model;
-    public function __construct(Customer $model)
+    private $customers;
+    public function __construct(Customer $customers)
     {
-        $this->model = $model;
+        $this->customers = $customers;
     }
 
 
     public function index()
     {
-        $data = Customer::all();
-        return response()->json($data);
+        $customers = Customer::all();
+        return response()->json($customers);
     }
 
     public function show($id)
     {
-        $data = Customer::find($id);
-        return response()->json($data);
+        $customers = Customer::find($id);
+        return response()->json($customers);
     }
 
     public function store(CustomerRequest $request)
     {
 
 
-        $data = Customer::create($request->all());
-        return response()->json($data);
+        $customers = Customer::create($request->all());
+        return response()->json($customers);
     }
 
     public function update(CustomerRequest $request, $id)
     {
 
-        $data = Customer::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $customers = Customer::find($id);
+        $customers->update($request->all());
+        return response()->json($customers);
     }
 
     public function delete($id)
     {
-        $data = Customer::find($id);
-        $data->delete();
+        $customers = Customer::find($id);
+        $customers->delete();
 
         return response()->json('', 201);
     }
