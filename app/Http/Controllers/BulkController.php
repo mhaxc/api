@@ -28,8 +28,16 @@ class BulkController extends Controller
 
     public function show($slug)
     {
-        $bulks = $this->bulks->findOrfail($slug);
-        return response()->json($bulks);
+        $bulks = $this->bulks->find($slug);
+
+        if(empty($bulks)){
+            return 'VOLUME NÂO ENCONTRADO';
+        }else {
+            return response()->json([
+            "message" => "  Volume NAO ENCONTRADO ",
+            "bulks" => $bulks
+        ]);}
+
     }
 
     public function store(BulkRequest $request)
@@ -40,6 +48,8 @@ class BulkController extends Controller
             "message" => "  Volume criado com Sucesso ",
             "bulks" => $bulks
         ]);
+
+
     }
 
     public function update(BulkRequest $request, $slug, Bulk $bulks)
@@ -57,7 +67,7 @@ class BulkController extends Controller
         $bulks->delete();
         return response()->json([
             "message" => "Volume Delete com Sucesso",
-            "bulks" => $bulks
+
         ]);
     }
 
