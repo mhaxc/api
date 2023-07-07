@@ -26,12 +26,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// bulks 
-Route::get('bulks', [BulkController::class, 'index']);
-Route::get('bulks/{slug}', [BulkController::class, 'show']);
-Route::post('bulks', [BulkController::class, 'store']);
-Route::put('bulks/{slug}', [BulkController::class, 'update']);
-Route::delete('bulks/{slug}', [BulkController::class, 'delete']);
+// bulks
+ Route::resource('bulks', BulkController::class,);
 
 // products
 Route::get('products', [ProductsController::class, 'index']);

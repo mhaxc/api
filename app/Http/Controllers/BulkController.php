@@ -18,34 +18,48 @@ class BulkController extends Controller
 
     public function index()
     {
-        $data = $this->model->all();
-        return response()->json($data);
+        $bulks = Bulk::all();
+        return response()->json([
+            "message" => " Lista de Volumes",
+            "bulks" => $bulks
+        ]);
+
     }
 
     public function show($slug)
     {
-        $data = $this->model->find($slug);
-        return response()->json($data);
+        $bulks = $this->bulks->findOrfail($slug);
+        return response()->json($bulks);
     }
 
-    public function store(Request $request)
+    public function store(BulkRequest $request)
     {
-        $data = $this->model->create($request->all());
-        return response()->json($data);
+        $bulks = Bulk::create($request->all());
+
+        return response()->json([
+            "message" => "  Volume criado com Sucesso ",
+            "bulks" => $bulks
+        ]);
     }
 
-    public function update(Request $request, $slug)
+    public function update(BulkRequest $request, $slug, Bulk $bulks)
     {
-        $data = $this->model->find($slug);
-        $data->update($request->all());
-        return response()->json($data);
+       $bulks->update($request->all());
+        return response()->json([
+            "message" => "Volume editado com Sucesso",
+            "bulks" => $bulks
+        ]);
     }
 
-    public function delete($slug)
+    public function destroy($slug)
     {
-        $data = $this->model->find($slug);
-        $data->delete();
-
-        return response()->json('', 201);
+        $bulks = Bulk::find($slug);
+        $bulks->delete();
+        return response()->json([
+            "message" => "Volume Delete com Sucesso",
+            "bulks" => $bulks
+        ]);
     }
+
 }
+
