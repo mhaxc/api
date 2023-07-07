@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -34,7 +35,8 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
          $products = Product::create($request->all());
-        return response()->json($products);
+         $categories=Category::find($request->all());
+        return response()->json($products,$categories);
     }
 
     public function update(ProductRequest $request, $id)
