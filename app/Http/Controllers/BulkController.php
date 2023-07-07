@@ -20,7 +20,7 @@ class BulkController extends Controller
     {
         $bulks = Bulk::all();
         return response()->json([
-            "message" => " Lista de Volumes",
+            "FUNÇAO" => " Lista de Volumes",
             "bulks" => $bulks
         ]);
 
@@ -28,13 +28,13 @@ class BulkController extends Controller
 
     public function show($slug)
     {
-        $bulks = $this->bulks->find($slug);
+        $bulks = Bulk::find($slug);
 
         if(empty($bulks)){
             return 'VOLUME NÂO ENCONTRADO';
         }else {
             return response()->json([
-            "message" => "  Volume ",
+            "FUNÇAO" => " VOLUMES ",
             "bulks" => $bulks
         ]);}
 

@@ -9,46 +9,64 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller{
 
 
-    private $model;
-    public function __construct(Category $model)
+    private $categories;
+    public function __construct(Category $categories)
     {
-        $this->model = $model;
+        $this->categories = $categories;
     }
 
     public function index()
     {
-        $data = $this->model->all();
-        return response()->json($data);
+        $categories = Category::all();
+        return response()->json([
+            "FUNÇAO" => " CATEGORIAS ",
+            "categories" => $categories
+        ]);
     }
 
     public function show($id)
     {
-        $data = $this->model->find($id);
-        return response()->json($data);
+        $categories = Category::find($id);
+
+        if (empty($categories)) {
+            return 'CATEGORIA NÂO ENCONTRADO';
+        } else {
+            return response()->json([
+                "FUNÇAO" => " CATEGORIA ",
+                "categories" => $categories
+            ]);
+        }
+
     }
 
     public function store(CategoryRequest $request)
     {
-  
-
-        $data = $this->model->create($request->all());
-        return response()->json($data);
+        $categories = Category::create($request->all());
+        return response()->json([
+            "message" => "  categoria criado com Sucesso ",
+            "categorias" => $categories
+        ]);
     }
 
     public function update(CategoryRequest $request, $id)
     {
 
-        $data = $this->model->find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $categories = Category::find($id);
+        $categories->update($request->all());
+        return response()->json([
+            "message" => "  categoria atualizada com Sucesso ",
+            "categorias" => $categories
+        ]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = $this->model->find($id);
-        $data->delete();
+        $categories = Category::find($id);
+        $categories->delete();
+         return response()->json([
+            "message" => "  categoria Deletada com Sucesso ",
 
-        return response()->json('',201);
+        ]);
     }
 
 }
