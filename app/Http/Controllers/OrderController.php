@@ -23,7 +23,7 @@ class OrderController extends Controller
         $data = $this->model->with('items')->get();
 
         return response()->json($data);
-        /*return view("Order.create");*/
+
     }
 
     public function show($id)

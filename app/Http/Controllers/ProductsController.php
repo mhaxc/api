@@ -9,16 +9,20 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
 
-    private $model;
-    public function __construct(Product $model)
+    private $products;
+    public function __construct(Product $products)
     {
-        $this->model = $model;
+        $this->products = $products;
     }
 
     public function index()
     {
-        $data = Product::all();
-        return response()->json($data);
+        $products = Product::all();
+
+        return response()->json([
+             "FUNÇAO" => " PRODUCTS ",
+            "PRODUCTS" => $products
+        ]);
     }
 
     public function show($id)
@@ -29,9 +33,8 @@ class ProductsController extends Controller
 
     public function store(ProductRequest $request)
     {
-
-        $data = Product::create($request->all());
-        return response()->json($data);
+         $products = Product::create($request->all());
+        return response()->json($products);
     }
 
     public function update(ProductRequest $request, $id)
