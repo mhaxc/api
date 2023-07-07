@@ -25,7 +25,14 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customers = Customer::find($id);
-        return response()->json($customers);
+        if (empty($customers)) {
+            return 'USUARIO NÂO ENCONTRADO';
+        } else {
+            return response()->json([
+                "FUNÇAO" => " USUARIOS ",
+                "customers" => $customers
+            ]);
+        }
     }
 
     public function store(CustomerRequest $request)
@@ -33,22 +40,37 @@ class CustomerController extends Controller
 
 
         $customers = Customer::create($request->all());
-        return response()->json($customers);
+        return response()->json([
+            "message" => "  usuario criado com Sucesso ",
+            "customers" => $customers
+        ]);
+
+
     }
+
 
     public function update(CustomerRequest $request, $id)
     {
 
         $customers = Customer::find($id);
         $customers->update($request->all());
-        return response()->json($customers);
+        return response()->json([
+          "message"=>"usuario atualizado com sucesso" ,
+            "customers" => $customers
+
+
+            ]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $customers = Customer::find($id);
         $customers->delete();
 
-        return response()->json('', 201);
+        return response()->json([
+          "message"=>" Deletado  com sucesso",
+        ]);
     }
+
 }
+
