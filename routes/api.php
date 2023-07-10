@@ -75,22 +75,23 @@ Route::put('orders/{id}', [OrderController::class, 'update']);
 Route::delete('orders/{id}', [OrderController::class, 'delete']);
 
 //stocks_locations
-Route::get('stocks_locations', [StockLocationController::class, 'index']);
-Route::get('stocks_locations/{id}', [StockLocationController::class, 'show']);
-Route::post('stocks_locations', [StockLocationController::class, 'store']);
-Route::put('stocks_locations/{id}', [StockLocationController::class, 'update']);
-Route::delete('stocks_locations/{id}', [StockLocationController::class, 'delete']);
+Route::resource('stocks_locations', StockLocationController::class);
+//Route::get('stocks_locations/{id}', [StockLocationController::class, 'show']);
+//Route::post('stocks_locations', [StockLocationController::class, 'store']);
+//Route::put('stocks_locations/{id}', [StockLocationController::class, 'update']);
+//Route::delete('stocks_locations/{id}', [StockLocationController::class, 'delete']);
 
 
 //stocks
 Route::get('stocks', [StockController::class, 'index']);
 
 //users
-Route::get('users', [UserController::class, 'index']);
-Route::get('users/{id}', [UserController::class, 'show']);
-Route::post('users', [UserController::class, 'store']);
-Route::put('users/{id}', [UserController::class, 'update']);
-Route::delete('users/{id}', [UserController::class, 'delete']);
+Route::resource('users', UserController::class);
+//Route::get('users', [UserController::class, 'index']);
+//Route::get('users/{id}', [UserController::class, 'show']);
+//Route::post('users', [UserController::class, 'store']);
+//Route::put('users/{id}', [UserController::class, 'update']);
+//Route::delete('users/{id}', [UserController::class, 'delete']);
 
 //type_payments
 Route::get('type_payments', [TypePaymentController::class, 'index']);

@@ -9,44 +9,47 @@ use Illuminate\Http\Request;
 class StockController extends Controller
 {
 
-    private $model;
-    public function __construct(Stock $model)
+    private $stocks;
+    public function __construct(Stock $stocks)
     {
-        $this->model = $model;
+        $this->stocks = $stocks;
     }
 
 
     public function index()
     {
-        $data = Stock::all();
-        return response()->json($data);
+        $stocks = Stock::all();
+        return response()->json($stocks);
     }
 
     public function show($id)
     {
-        $data = Stock::find($id);
-        return response()->json($data);
+        $stocks = Stock::find($id);
+        return response()->json($stocks);
     }
 
     public function store(StockRequest $request)
     {
 
-        $data = Stock::create($request->all());
-        return response()->json($data);
+        $stocks = Stock::create($request->all());
+        return response()->json($stocks);
     }
 
     public function update(StockRequest $request, $id)
     {
-        $data = Stock::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $stocks = Stock::find($id);
+        $stocks->update($request->all());
+        return response()->json($stocks);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = Stock::find($id);
-        $data->delete();
+        $stocks = Stock::find($id);
+        $stocks->delete();
 
-        return response()->json('', 201);
+        return response()->json([
+            "message" => "  estoque Deletada com Sucesso ",
+
+        ]);
     }
 }

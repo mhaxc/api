@@ -9,44 +9,65 @@ use Illuminate\Http\Request;
 class StockLocationController extends Controller
 {
 
-    private $model;
-    public function __construct(StockLocation $model)
+    private $stockLocations;
+    public function __construct(StockLocation $stockLocations)
     {
-        $this->model = $model;
+        $this->stockLocations = $stockLocations;
     }
 
     public function index()
     {
-        $data = StockLocation::all();
-        return response()->json($data);
+        $stockLocations = StockLocation::all();
+        return response()->json([
+            "FUNÇAO" => " LUGAR DO ESTOQUE ",
+            "stockLocations" => $stockLocations
+        ]);
     }
 
     public function show($id)
     {
-        $data = StockLocation::find($id);
-        return response()->json($data);
+        $stockLocations = StockLocation::find($id);
+        if (empty($stockLocations)) {
+            return 'CATEGORIA NÂO ENCONTRADO';
+        } else {
+            return response()->json([
+                "FUNÇAO" => " stockLocations ",
+                "stockLocations" => $stockLocations
+
+                  ]);
+                }
     }
 
     public function store(StockLocationRequest $request)
     {
 
-        $data = StockLocation::create($request->all());
-        return response()->json($data);
+        $stockLocations = StockLocation::create($request->all());
+         return response()->json([
+            "message" => "  estoque criado com Sucesso ",
+            "stockLocations" => $stockLocations
+        ]);
     }
 
     public function update(StockLocationRequest $request, $id)
     {
 
-        $data = StockLocation::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $stockLocations = StockLocation::find($id);
+        $stockLocations->update($request->all());
+        return response()->json([
+            "message"=>"estoque atualizado com sucesso",
+            "stockLocations"=> $stockLocations
+
+        ]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = StockLocation::find($id);
-        $data->delete();
+        $stockLocations = StockLocation::find($id);
+        $stockLocations->delete();
+        return response()->json([
+            "message" => "estoque deletado com sucesso"
 
-        return response()->json('', 201);
+
+        ]);
     }
 }

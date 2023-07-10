@@ -9,45 +9,62 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    private $model;
-    public function __construct(User $model)
+    private $users;
+    public function __construct(User $users)
     {
-        $this->model = $model;
+        $this->users = $users;
     }
 
 
     public function index()
     {
-        $data = User::all();
-        return response()->json($data);
+        $users = User::all();
+        return response()->json([
+            "FUNÇAO" => "USUARIOS ",
+            "users" => $users
+        ]);
     }
 
     public function show($id)
     {
-        $data = User::find($id);
-        return response()->json($data);
+        $users = User::find($id);
+        if (empty($users)) {
+            return 'USER NÂO ENCONTRADO';
+        } else {
+            return response()->json([
+                "FUNÇAO" => " USER ",
+                "users" => $users
+            ]);
+        }
     }
 
     public function store(UserRequest $request)
     {
 
-        $data = User::create($request->all());
-        return response()->json($data);
+        $users = User::create($request->all());
+        return response()->json([
+            "message" => "  usuario criado com Sucesso ",
+            "users" => $users
+        ]);
     }
 
     public function update(UserRequest $request, $id)
     {
 
-        $data = User::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $users = User::find($id);
+        $users->update($request->all());
+        return response()->json([
+            "message" => "  usuario Atualizado  com Sucesso ",
+            "users" => $users
+        ]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = User::find($id);
-        $data->delete();
-
-        return response()->json('', 201);
+        $users = User::find($id);
+        $users->delete();
+        return response()->json([
+            "message" => "  usuario deletado com Sucesso ",
+        ]);
     }
 }

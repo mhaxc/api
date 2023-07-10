@@ -20,8 +20,9 @@ class ProductsController extends Controller
     {
         $products = Product::all();
 
+
         return response()->json([
-             "FUNÇAO" => " PRODUCTS ",
+             "FUNÇAO" => " PRODUTOS ",
             "PRODUCTS" => $products
         ]);
     }
@@ -35,8 +36,8 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
          $products = Product::create($request->all());
-         $categories=Category::find($request->all());
-        return response()->json($products,$categories);
+
+        return response()->json($products);
     }
 
     public function update(ProductRequest $request, $id)
