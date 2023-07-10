@@ -9,44 +9,62 @@ use Illuminate\Http\Request;
 class TypePaymentController extends Controller
 {
 
-    private $model;
-    public function __construct(TypePayment $model)
+    private $typepayments;
+    public function __construct(TypePayment $typepayments)
     {
-        $this->model = $model;
+        $this->typepayments = $typepayments;
     }
 
     public function index()
     {
-        $data = TypePayment::all();
-        return response()->json($data);
+        $typepayments = TypePayment::all();
+        return response()->json([
+            "FUNÇAO" => "typepayments ",
+            "typepayments" => $typepayments
+        ]);
     }
 
     public function show($id)
     {
-        $data = TypePayment::find($id);
-        return response()->json($data);
+        $typepayments = TypePayment::find($id);
+        if (empty($typepayments)) {
+            return 'tipo de pagamento NÂO ENCONTRADO';
+        } else {
+            return response()->json([
+                "FUNÇAO" => " tipo de pagamento ",
+                "typepayments" => $typepayments
+            ]);
+        }
     }
 
     public function store(TypePaymentRequest $request)
     {
 
-        $data = TypePayment::create($request->all());
-        return response()->json($data);
+        $typepayments = TypePayment::create($request->all());
+        return response()->json([
+            "message" => "  tipo de pagamento criado com Sucesso ",
+            "typepayments" => $typepayments
+        ]);
     }
 
     public function update(TypePaymentRequest $request, $id)
     {
 
-        $data = TypePayment::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $typepayments = TypePayment::find($id);
+        $typepayments->update($request->all());
+        return response()->json([
+            "message" => "  tipo de pagamento Atualizado  com Sucesso ",
+            "typepayments" => $typepayments
+        ]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = TypePayment::find($id);
-        $data->delete();
+        $typepayments = TypePayment::find($id);
+        $typepayments->delete();
 
-        return response()->json('', 201);
+        return response()->json([
+            "message" => "  tipo de pagamento deletado com Sucesso ",
+        ]);
     }
 }

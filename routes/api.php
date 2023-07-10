@@ -26,76 +26,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// bulks
+ // bulks
  Route::resource('bulks', BulkController::class);
 
-// products
+ // products
  Route::resource('products', ProductsController::class);
 
- //Route::get('products', [ProductsController::class, 'index']);
-//Route::get('products/{id}', [ProductsController::class, 'show']);
-//Route::post('products', [ProductsController::class, 'store']);
-//Route::put('products/{id}', [ProductsController::class, 'update']);
-//Route::delete('products/{id}', [ProductsController::class, 'delete']);
-
-//categories
-Route::resource('categories', CategoryController::class);
-//Route::get('categories', [CategoryController::class, 'index']);
-//Route::get('categories/{id}', [CategoryController::class, 'show']);
-//Route::post('categories', [CategoryController::class, 'store']);
-//Route::put('categories/{id}', [CategoryController::class, 'update']);
-//Route::delete('categories/{id}', [CategoryController::class, 'delete']);
-
-//customers
-Route::resource('customers', CustomerController::class);
-//Route::get('customers', [CustomerController::class, 'index']);
-//Route::get('customers/{id}', [CustomerController::class, 'show']);
-//Route::post('customers', [CustomerController::class, 'store']);
-//Route::put('customers/{id}', [CustomerController::class, 'update']);
-//Route::delete('customers/{id}', [CustomerController::class, 'delete']);
-
-//orders_items
-/*Route::get('orders_items', [OrderItemController::class, 'index']);
-Route::get('orders_items/{seq}', [OrderItemController::class, 'show']);
-Route::post('orders_items', [OrderItemController::class, 'store']);
-Route::put('orders_items/{seq}', [OrderItemController::class, 'update']);
-Route::delete('orders_items/{seq}', [OrderItemController::class, 'delete']);*/
-
-//orders
-Route::get('orders', [OrderController::class, 'index']);
-Route::get('orders/{id}', [OrderController::class, 'show']);
-// tentativa de fazer aparecer 1 item de 1 pedido
-Route::get('orders/{id}/items/{products_id}', [OrderController::class, 'showItemOrder']);
-Route::post('orders', [OrderController::class, 'store']);
-//tentativa de incluir item em um pedido
-Route::post('orders/{id}/items', [OrderController::class, 'StoreAddItem']);
-//tentativa de criar um metodo para deletar 1 item em um pedido
-Route::delete('orders/{id}/items/{products_id}', [OrderController::class, 'deleteItem']);
-Route::put('orders/{id}', [OrderController::class, 'update']);
-Route::delete('orders/{id}', [OrderController::class, 'delete']);
-
-//stocks_locations
-Route::resource('stocks_locations', StockLocationController::class);
-//Route::get('stocks_locations/{id}', [StockLocationController::class, 'show']);
-//Route::post('stocks_locations', [StockLocationController::class, 'store']);
-//Route::put('stocks_locations/{id}', [StockLocationController::class, 'update']);
-//Route::delete('stocks_locations/{id}', [StockLocationController::class, 'delete']);
 
 
-//stocks
-Route::get('stocks', [StockController::class, 'index']);
+ //categories
+ Route::resource('categories', CategoryController::class);
 
-//users
-Route::resource('users', UserController::class);
-//Route::get('users', [UserController::class, 'index']);
-//Route::get('users/{id}', [UserController::class, 'show']);
-//Route::post('users', [UserController::class, 'store']);
-//Route::put('users/{id}', [UserController::class, 'update']);
-//Route::delete('users/{id}', [UserController::class, 'delete']);
 
-//type_payments
-Route::get('type_payments', [TypePaymentController::class, 'index']);
-Route::get('type_payments/{id}', [TypePaymentController::class, 'show']);
-Route::post('type_payments', [TypePaymentController::class, 'store']);
-Route::put('type_payments/{id}', [TypePaymentController::class, 'update']);
-Route::delete('type_payments/{id}', [TypePaymentController::class, 'delete']);
+ //customers
+ Route::resource('customers', CustomerController::class);
+
+
+ //stocks_locations
+ Route::resource('stocks_locations', StockLocationController::class);
+
+
+
+ //stocks
+ Route::get('stocks', [StockController::class, 'index']);
+
+ //users
+ Route::resource('users', UserController::class);
+
+
+ //type_payments
+ Route::resource('type_payments', TypePaymentController::class);
+
+
+ //orders
+ Route::get('orders', [OrderController::class, 'index']);
+ Route::get('orders/{id}', [OrderController::class, 'show']);
+ // tentativa de fazer aparecer 1 item de 1 pedido
+ Route::get('orders/{id}/items/{products_id}', [OrderController::class, 'showItemOrder']);
+ Route::post('orders', [OrderController::class, 'store']);
+ //tentativa de incluir item em um pedido
+ Route::post('orders/{id}/items', [OrderController::class, 'StoreAddItem']);
+ //tentativa de criar um metodo para deletar 1 item em um pedido
+ Route::delete('orders/{id}/items/{products_id}', [OrderController::class, 'deleteItem']);
+ Route::put('orders/{id}', [OrderController::class, 'update']);
+ Route::delete('orders/{id}', [OrderController::class, 'delete']);
+
+ //orders_items
+ //Route::get('orders_items', [OrderItemController::class, 'index']);
+ //Route::get('orders_items/{seq}', [OrderItemController::class, 'show']);
+ //Route::post('orders_items', [OrderItemController::class, 'store']);
+ //Route::put('orders_items/{seq}', [OrderItemController::class, 'update']);
