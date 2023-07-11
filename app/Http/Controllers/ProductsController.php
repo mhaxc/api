@@ -30,29 +30,45 @@ class ProductsController extends Controller
     public function show($id)
     {
         $products = Product::find($id);
-        return response()->json($products);
+        if (empty($products)) {
+            return 'PRODUTOS NÂO ENCONTRADO';
+        } else {
+            return response()->json([
+                "FUNÇAO" => " PRODUTOS ",
+                "produtos" => $products
+            ]);
+        }
     }
 
     public function store(ProductRequest $request)
     {
          $products = Product::create($request->all());
 
-        return response()->json($products);
+        return response()->json([
+            "message" => "  produtos criado com Sucesso ",
+            "products" => $products
+        ]);
     }
 
     public function update(ProductRequest $request, $id)
     {
-
-        $data = Product::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+       $products = Product::find($id);
+        $products->update($request->all());
+        return response()->json([
+            "message" => "  produtos atualizada com Sucesso ",
+            "products" => $products
+        ]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $data = Product::find($id);
         $data->delete();
+        return response()->json([
+            "message" => "  Produto Deletada com Sucesso",
 
-        return response()->json('', 201);
+        ]);
+
+
     }
 }
