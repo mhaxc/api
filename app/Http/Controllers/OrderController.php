@@ -12,17 +12,17 @@ class OrderController extends Controller
 {
 
 
-    private $model;
-    public function __construct(Order $model)
+    private $orders;
+    public function __construct(Order $orders)
     {
-        $this->model = $model;
+        $this->orders = $orders;
     }
 
     public function index()
     {
-        $data = $this->model->with('items')->get();
+        $orders = $this->orders->with('items')->get();
 
-        return response()->json($data);
+        return response()->json($orders);
 
     }
 
