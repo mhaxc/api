@@ -40,15 +40,16 @@ class ProductsController extends Controller
         }
     }
 
+
     public function store(ProductRequest $request)
     {
-         $products = Product::create($request->all());
-
-        return response()->json([
+        $products = Product::create($request->all());
+         return response()->json([
             "message" => "  produtos criado com Sucesso ",
             "products" => $products
         ]);
     }
+
 
     public function update(ProductRequest $request, $id)
     {
@@ -65,7 +66,7 @@ class ProductsController extends Controller
         $data = Product::find($id);
         $data->delete();
         return response()->json([
-            "message" => "  Produto Deletada com Sucesso",
+            "message" => "  Produto Deletado com Sucesso",
 
         ]);
 

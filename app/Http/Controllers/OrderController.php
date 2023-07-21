@@ -7,15 +7,18 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+
 
 class OrderController extends Controller
 {
 
 
-    private $orders;
-    public function __construct(Order $orders)
+    private $orders,$products;
+    public function __construct(Order $orders,Product $products)
     {
         $this->orders = $orders;
+        $this->products = $products;
     }
 
     public function index()
@@ -32,12 +35,18 @@ class OrderController extends Controller
         return response()->json($data);
     }
 
-    //tentativa de mostrar só 1 item do pedido
-    public function showItemOrder($id, $product_id)
+    public function addItem($id)
     {
-        $data = Order::find($id, $product_id);
-        return response()->json($data);
+
+        $product = Product::find($id);
+
+        if (!$product) {
+            return;
+        }
+
+        return $product;
     }
+
 
     public function store(OrderRequest $request)
     {

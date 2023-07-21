@@ -10,15 +10,15 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        // 'id',
+        'id',
         'number',
-        //'users_id',
+        'users_id',
         'date',
-        //'type',
-        //'status',
-        //'customer_id',
+        'type',
+        'status',
+        'customer_id',
         'observation',
-        //'type_payment_id'
+        'type_payment_id'
 
     ];
 
@@ -28,14 +28,14 @@ class Order extends Model
         'total_order'
     ];
 
-    public function getTotalOrderAttribute()
-    {
+    //public function getTotalOrderAttribute()
+   // {
 
-        return $this->items
-            ->reduce(function (int $valor, OrderItem $item_Linha) {
-                return $valor = $valor + ($item_Linha->value * $item_Linha->quantity);
-            }, 0);
-    }
+        //return $this->items
+            //->reduce(function (int $valor, OrderItem $item_Linha) {
+              //  return $valor = $valor + ($item_Linha->value * $item_Linha->quantity);
+         //   }, 0);
+    //}
 
 
 
