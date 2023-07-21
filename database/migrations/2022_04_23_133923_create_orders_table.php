@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('number');
-            // $table->unsignedInteger('users_id');
+            $table->unsignedInteger('users_id');
             $table->date('date');
-            //$table->string('type',1);
-            //$table->string('status',1);
-            //$table->string('customer_id');
+            $table->string('type',1);
+            $table->string('status',1);
+            $table->string('customer_id');
             $table->string('observation', 200);
-            //$table->unsignedInteger('type_payment_id');
+            $table->unsignedInteger('type_payment_id');
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('type_payment_id')->references('id')->on('type_payments');
             $table->timestamps();
-            //$table->foreign('users_id')->references('id')->on('users');
-            //$table->foreign('customer_id')->references('id')->on('customers');
-            //$table->foreign('type_payment_id')->references('id')->on('type_payments');
         });
     }
 

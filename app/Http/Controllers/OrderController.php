@@ -12,73 +12,45 @@ use App\Models\Product;
 
 class OrderController extends Controller
 {
-
-
-    private $orders,$products;
-    public function __construct(Order $orders,Product $products)
+    private $orders;
+    public function __construct(Order $orders)
     {
         $this->orders = $orders;
-        $this->products = $products;
+
     }
 
     public function index()
     {
-        $orders = $this->orders->with('items')->get();
+        $orders = Order::all();
 
-        return response()->json($orders);
+       return response()->json($orders);
 
     }
 
-    public function show($id)
-    {
-        $data = Order::find($id);
-        return response()->json($data);
-    }
-
-    public function addItem($id)
+    public function show()
     {
 
-        $product = Product::find($id);
-
-        if (!$product) {
-            return;
-        }
-
-        return $product;
     }
 
 
-    public function store(OrderRequest $request)
+
+    public function store( $request)
     {
-        $max_number = DB::table('orders')->max('number');
 
-        $request_data = $request->all();
-        $order = Order::create([
-            'number' => ($max_number === null ? env("NRO_INITPED") : $max_number) + 1,
-            'date' => $request_data['date'],
-            'observation' => $request_data['observation'],
-        ]);
-
-
-        foreach ($request_data['items'] as $item) {
-            $order->items()->create($item);
-        }
-
-        return response()->json($order);
     }
 
     public function update(OrderRequest $request, $id)
     {
 
-        $data = Order::find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        $orders = Order::find($id);
+        $orders->update($request->all());
+        return response()->json($orders);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = Order::find($id);
-        $data->delete();
+        $orders = Order::find($id);
+        $orders->delete();
 
         return response()->json('', 201);
     }
@@ -87,25 +59,13 @@ class OrderController extends Controller
     {
         //DB::table('orders_items')->where('order_id', $id)->where('product_id', $products_id)->delete();
         //OrderItem::where('order_id', $id)->where('product_id', $products_id)->delete();
-        Order::find($id)->items()->where('product_id', $products_id)->delete();
+        //Order::find($id)->items()->where('product_id', $products_id)->delete();
 
-        return response()->json('', 201);
+      // return response()->json('', 201);
     }
 
 
 
-    //tentativa de criar item na ordem
-    public function StoreAddItem(OrderRequest $request, $id)
-    {
-        $request_data = $request->find($id);
-        $order = OrderItem::update([
-            'product_id' => $request_data['product_id'],
-            'quantity' => $request_data['quantity'],
-            'value' => $request_data['value'],
-        ]);
-
-        return response()->json($order);
-    }
 }
 
 

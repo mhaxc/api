@@ -26,8 +26,13 @@ class OrderRequest extends FormRequest
     {
         return [
             //'number' => 'required',
-            'observation' => 'required',
-            'date' => 'Required'
+            'users_id'=>'required',
+            'date' => 'required',
+            'customer_id' => 'required',
+            'users_id' => 'required',
+            'type_payment_id' => 'required',
+            'observation' => 'required'
+
         ];
     }
 }

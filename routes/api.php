@@ -59,18 +59,20 @@ use Illuminate\Support\Facades\Route;
  Route::resource('type_payments', TypePaymentController::class);
 
 
- //orders
- Route::get('orders', [OrderController::class, 'index']);
- Route::get('orders/{id}', [OrderController::class, 'show']);
+//orders
+
+Route::resource('orders', OrderController::class);
+ //Route::get('orders', [OrderController::class, 'index']);
+ //Route::get('orders/{id}', [OrderController::class, 'show']);
  // tentativa de fazer aparecer 1 item de 1 pedido
- Route::get('orders/{id}/items/{products_id}', [OrderController::class, 'showItemOrder']);
- Route::post('orders', [OrderController::class, 'store']);
+ //Route::get('orders/{id}/items/{products_id}', [OrderController::class, 'showItemOrder']);
+ //Route::post('orders', [OrderController::class, 'store']);
  //tentativa de incluir item em um pedido
- Route::post('orders/{id}/items', [OrderController::class, 'StoreAddItem']);
+ //Route::post('orders/{id}/items', [OrderController::class, 'StoreAddItem']);
  //tentativa de criar um metodo para deletar 1 item em um pedido
- Route::delete('orders/{id}/items/{products_id}', [OrderController::class, 'deleteItem']);
- Route::put('orders/{id}', [OrderController::class, 'update']);
- Route::delete('orders/{id}', [OrderController::class, 'delete']);
+ //Route::delete('orders/{id}/items/{products_id}', [OrderController::class, 'deleteItem']);
+ //Route::put('orders/{id}', [OrderController::class, 'update']);
+ //Route::delete('orders/{id}', [OrderController::class, 'delete']);
 
  //orders_items
  //Route::get('orders_items', [OrderItemController::class, 'index']);
