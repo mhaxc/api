@@ -7,6 +7,8 @@ use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
+
+
 {
 
     private $stocks;
@@ -33,6 +35,7 @@ class StockController extends Controller
 
         $stocks = Stock::create($request->all());
         return response()->json($stocks);
+
     }
 
     public function update(StockRequest $request, $id)
@@ -52,4 +55,7 @@ class StockController extends Controller
 
         ]);
     }
+
+
+
 }

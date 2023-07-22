@@ -23,19 +23,33 @@ class OrderController extends Controller
     {
         $orders = Order::all();
 
-       return response()->json($orders);
+      return response()->json($orders);
 
     }
 
-    public function show()
+    public function show($id)
     {
+        $orders = Order::find($id);
+        if (empty($orders)) {
+            return 'PRODUTOS NÂO ENCONTRADO';
+        } else {
+            return response()->json([
+                "FUNÇAO" => " PRODUTOS ",
+                "ORDERS" => $orders
+            ]);
+        }
 
     }
 
 
 
-    public function store( $request)
+    public function store( OrderRequest $request)
     {
+        $orders = Order::create($request->all());
+        return response()->json([
+            "message" => "  produtos criado com Sucesso ",
+            "orders" => $orders
+        ]);
 
     }
 

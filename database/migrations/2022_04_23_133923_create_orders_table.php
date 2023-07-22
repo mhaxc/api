@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('number');
+            $table->unsignedInteger('number')->nullable();
             $table->unsignedInteger('users_id');
-            $table->date('date');
-            $table->string('type',1);
-            $table->string('status',1);
+            $table->date('date')->nullable();
+            $table->string('type',1)->nullable();
+            $table->string('status',1)->nullable();
             $table->string('customer_id');
-            $table->string('observation', 200);
+            $table->string('observation', 200)->nullable();
             $table->unsignedInteger('type_payment_id');
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('customer_id')->references('id')->on('customers');

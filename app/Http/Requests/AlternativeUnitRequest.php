@@ -24,7 +24,14 @@ class AlternativeUnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id'=>'required'
+            'product_id'=>'required',
+            'bulks_slug'=>'required',
+            'quantity' => 'required',
+            'divide_or_multiply' => 'required'
+
+
+
+
         ];
     }
 }
