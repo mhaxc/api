@@ -7,7 +7,9 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Product;
+
+
+
 
 
 class OrderController extends Controller
@@ -20,12 +22,12 @@ class OrderController extends Controller
     }
 
     public function index()
-    {
-        $orders = Order::all();
+        {
+            $orders = Order::all();
+            return response()->json($orders);
 
-      return response()->json($orders);
 
-    }
+         }
 
     public function show($id)
     {
@@ -46,6 +48,7 @@ class OrderController extends Controller
     public function store( OrderRequest $request)
     {
         $orders = Order::create($request->all());
+
         return response()->json([
             "message" => "  produtos criado com Sucesso ",
             "orders" => $orders
