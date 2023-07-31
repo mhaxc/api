@@ -27,7 +27,7 @@ class OrdeItemRequest extends FormRequest
             'product_id' => 'requeried',
             'quantity' => 'requeried',
             'value' => 'requeried',
-            //'data' => 'require'
+            'data' => 'require'
         ];
     }
 }

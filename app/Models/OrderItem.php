@@ -20,7 +20,7 @@ class OrderItem extends Model
     ];
 
 
-    protected $table = 'orders_items';
+    protected $table = 'ordersitems';
     //protected $keyType = 'int';
     //protected $primaryKey = 'seq';
     //public $incrementing = true;

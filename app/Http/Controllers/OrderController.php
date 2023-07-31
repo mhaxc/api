@@ -6,37 +6,39 @@ use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 
 
 
 
 class OrderController extends Controller
+
 {
     private $orders;
-    public function __construct(Order $orders)
-    {
+        public function __construct(Order $orders)
+        {
         $this->orders = $orders;
 
-    }
+     }
 
-    public function index()
+        public function index()
         {
+
             $orders = Order::all();
             return response()->json($orders);
 
-
          }
 
-    public function show($id)
-    {
+
+         public function show($id)
+         {
         $orders = Order::find($id);
         if (empty($orders)) {
-            return 'PRODUTOS NÂO ENCONTRADO';
-        } else {
+            return 'PEDIDO NÂO ENCONTRADO';
+         } else {
             return response()->json([
-                "FUNÇAO" => " PRODUTOS ",
+                "FUNÇAO" => " PEDIDOS ",
                 "ORDERS" => $orders
             ]);
         }
@@ -50,8 +52,10 @@ class OrderController extends Controller
         $orders = Order::create($request->all());
 
         return response()->json([
-            "message" => "  produtos criado com Sucesso ",
-            "orders" => $orders
+            "message" => "  pedido criado com Sucesso ",
+            "FUNÇAO" => " PEDIDOS ",
+            "ORDERS" => $orders
+
         ]);
 
     }
@@ -61,7 +65,11 @@ class OrderController extends Controller
 
         $orders = Order::find($id);
         $orders->update($request->all());
-        return response()->json($orders);
+        return response()->json([
+            "message" => "  pedido atualizado com Sucesso ",
+            "orders" => $orders
+        ]);
+
     }
 
     public function destroy($id)
@@ -69,23 +77,19 @@ class OrderController extends Controller
         $orders = Order::find($id);
         $orders->delete();
 
-        return response()->json('', 201);
+        return response()->json([
+            "message" => "  pedido atualizado com Sucesso ",
+
+        ]);
     }
 
-    public function deleteItem($id, $products_id)
-    {
-        //DB::table('orders_items')->where('order_id', $id)->where('product_id', $products_id)->delete();
-        //OrderItem::where('order_id', $id)->where('product_id', $products_id)->delete();
-        //Order::find($id)->items()->where('product_id', $products_id)->delete();
 
-      // return response()->json('', 201);
-    }
+
+
+
 
 
 
 }
 
 
-    /*if ($max_number === null) {
-            $max_number = env("NRO_INITPED");
-        }*/

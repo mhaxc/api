@@ -4,7 +4,7 @@ use App\Http\Controllers\BulkController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\Order_itemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockLocationController;
 use App\Http\Controllers\StockController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypePaymentController;
 use App\Http\Controllers\UserHasCustomerController;
 use App\Http\Controllers\AlternativeUnitController;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,8 +66,10 @@ use Illuminate\Support\Facades\Route;
 //orders
 
  Route::resource('orders',OrderController::class);
+ Route::resource('items', Order_itemController::class);
 
-//Route::get('orders', [OrderController::class, 'index']);
+
+
  //Route::get('orders/{id}', [OrderController::class, 'show']);
  // tentativa de fazer aparecer 1 item de 1 pedido
  //Route::get('orders/{id}/items/{products_id}', [OrderController::class, 'showItemOrder']);
@@ -79,7 +82,7 @@ use Illuminate\Support\Facades\Route;
  //Route::delete('orders/{id}', [OrderController::class, 'delete']);
 
  //orders_items
- Route::resource('orders_items',OrderItemController::class);
+ //Route::resource('ordersitems',OrderController::class);
  //Route::get('orders_items/{seq}', [OrderItemController::class, 'show']);
- //Route::post('orders_items', [OrderItemController::class, 'store']);
+ //Route::post('items', [OrderItemController::class, 'store']);
  //Route::put('orders_items/{seq}', [OrderItemController::class, 'update']);

@@ -24,9 +24,9 @@ class Order extends Model
 
     protected $table = 'orders';
 
-    protected $appends = [
-        'total_order'
-    ];
+    //protected $appends = [
+        //'total_order'
+    //];
 
     //public function getTotalOrderAttribute()
    // {
