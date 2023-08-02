@@ -13,7 +13,9 @@ class Order_ItemController extends Controller
 
     public function index()
     {
-        return ("teste");
+        $ordersitems = OrderItem::all();
+        return response()->json($ordersitems);
+
     }
 
 
@@ -21,12 +23,12 @@ class Order_ItemController extends Controller
 
     public function store(OrdeItemRequest $request)
     {
-        $ordersitems  = OrderItem::create($request->all());
+        //$ordersitems  = OrderItem::create($request->all());
 
-        return response()->json([
-            "message" => "  produtos criado com Sucesso ",
-            "orders" => $ordersitems
-        ]);
+        //return response()->json([
+            //"message" => "  produtos criado com Sucesso ",
+            //"orders" => $ordersitems
+        //]);
     }
 
 
