@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockLocationController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TypePaymentController;
 use App\Http\Controllers\UserHasCustomerController;
 use App\Http\Controllers\AlternativeUnitController;
@@ -66,7 +67,7 @@ use Illuminate\Support\Facades\Route;
 //orders
 
  Route::resource('orders',OrderController::class);
- Route::resource('items', Order_itemController::class);
+ Route::resource('items' ,itemController::class);
 
 
 

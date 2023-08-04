@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
-{
-    use HasFactory;
 
-    protected $fillable = [
+{
+        use HasFactory;
+
+     protected $fillable = [
 
         'order_id',
         'product_id',
@@ -17,21 +18,23 @@ class OrderItem extends Model
         'value',
 
 
-    ];
+     ];
 
 
-    protected $table = 'ordersitems';
-    //protected $keyType = 'int';
-    //protected $primaryKey = 'seq';
-    //public $incrementing = true;
+      protected $table = 'ordersitems';
+     //protected $keyType = 'int';
+     //protected $primaryKey = 'seq';
+     //public $incrementing = true;
 
-    public function order()
-    {
+     public function order()
+
+     {
         return $this->belongsTo(Order::class);
-    }
+     }
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
+     public function product()
+
+     {
+      return $this->belongsTo(Product::class);
+     }
 }

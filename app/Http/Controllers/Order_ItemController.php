@@ -9,7 +9,13 @@ use App\Models\OrderItem;
 
 
 class Order_ItemController extends Controller
+
 {
+    private $ordersitems;
+    public function __construct(OrderItem $ordersitems)
+    {
+        $this->ordersitems = $ordersitems;
+    }
 
     public function index()
     {
