@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\BulkController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
@@ -67,8 +68,10 @@ use Illuminate\Support\Facades\Route;
 //orders
 
  Route::resource('orders',OrderController::class);
+
  Route::resource('items' ,itemController::class);
 
+ Route::resource('alters', AlternativeController::class);
 
 
  //Route::get('orders/{id}', [OrderController::class, 'show']);

@@ -17,9 +17,9 @@ class AlternativeUnit extends Model
     ];
 
     protected $table = 'alternatives_units';
-    protected $keyType = 'int';
-    //protected $primaryKey = 'id';
-    public $incrementing = true;
+    //protected $keyType = 'int';
+    protected $primaryKey = 'id';
+    //public $incrementing = true;
 
     public function alternativeunit()
     {
