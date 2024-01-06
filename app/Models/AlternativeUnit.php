@@ -18,10 +18,10 @@ class AlternativeUnit extends Model
 
     protected $table = 'alternatives_units';
     //protected $keyType = 'int';
-    protected $primaryKey = 'id';
-    //public $incrementing = true;
+    //protected $primaryKey = 'id';
+    //public $incrementing = false;
 
-    public function alternativeunit()
+    public function alternative_unit()
     {
         return $this->belongsTo(AlternativeUnit::class);
     }
@@ -29,5 +29,11 @@ class AlternativeUnit extends Model
     public function bulk()
     {
         return $this->belongsTo(Bulk::class);
+
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

@@ -12,22 +12,22 @@ class Item extends Model
             'order_id',
             'product_id',
             'quantity',
-            'value',
+            'value'
 
         ];
-    protected $table = 'item';
+        protected $table = 'items';
 
-    public function order()
+        public function order()
 
-    {
-        return $this->belongsTo(Order::class);
-    }
+        {
+        return $this->belongsToMany(Order::class);
+        }
 
-    public function product()
+     public function product()
 
-    {
+        {
         return $this->belongsTo(Product::class);
-    }
+        }
 
 
 }

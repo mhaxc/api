@@ -5,45 +5,48 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AlternativeUnitRequest as RequestsAlternativeUnitRequest;
 use App\Models\AlternativeUnit;
 use Illuminate\Http\Request;
-use Illuminate\Http\Request\AlternativeUnitRequest;
 use App\Models\Product;
 
 
 class AlternativeController extends Controller
 {
-    private $alters;
-    public function __construct(AlternativeUnit $alters)
-    {
-        $this->alters = $alters;
+    private $alternatives_units;
+        public function __construct(AlternativeUnit $alternatives_units)
+        {
+            $this->alternatives_units = $alternatives_units;
+        }
+
+
+     public function index()
+        {
+        $alternatives_units = AlternativeUnit::all();
+
+        return response()->json($alternatives_units);
+        }
+
+
+     public function store(RequestsAlternativeUnitRequest $request)
+     {
+        $alternatives_units = AlternativeUnit::create($request->all());
+        return response()->json($alternatives_units);
+
     }
-    public function index()
-    {
-        $alters = AlternativeUnit::all();
-
-        return response()->json($alters);
-    }
-
-    public function store(RequestsAlternativeUnitRequest $request)
-    {
-        $alters = AlternativeUnit::create($request->all());
-        return response()->json($alters);
-
-    }
 
 
-    public function show($id)
-    {
+        public function show($id)
+        {
         //
-    }
+        }
 
-    public function update(Request $request, $id)
-    {
+        public function update(Request $request, $id)
+        {
         //
-    }
+        }
 
 
-    public function destroy($id)
-    {
-        //
-    }
+        public function destroy($id)
+        {
+
+           //
+        }
 }
