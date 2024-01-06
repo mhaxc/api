@@ -24,7 +24,7 @@ class Bulk extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function alternative_unit()
+    public function alternativeunit()
     {
         return $this->hasMany(AlternativeUnit::class);
     }

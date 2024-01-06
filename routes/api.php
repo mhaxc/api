@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\BulkController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
@@ -10,7 +9,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockLocationController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TypePaymentController;
 use App\Http\Controllers\UserHasCustomerController;
 use App\Http\Controllers\AlternativeUnitController;
@@ -63,15 +61,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
- Route::resource('alternativeunits', AlternativeUnitController::class);
+ //Route::resource('alternativeunits', AlternativeUnitController::class);
 
 //orders
 
  Route::resource('orders',OrderController::class);
+ Route::resource('items', Order_itemController::class);
 
- Route::resource('items' ,itemController::class);
-
- Route::resource('alters', AlternativeController::class);
 
 
  //Route::get('orders/{id}', [OrderController::class, 'show']);

@@ -73,6 +73,10 @@ abstract class AbstractTransport implements TransportInterface
 
             $event = new MessageEvent($message, $envelope, (string) $this);
             $this->dispatcher->dispatch($event);
+            if ($event->isRejected()) {
+                return null;
+            }
+
             $envelope = $event->getEnvelope();
             $message = $event->getMessage();
 
@@ -108,9 +112,7 @@ abstract class AbstractTransport implements TransportInterface
      */
     protected function stringifyAddresses(array $addresses): array
     {
-        return array_map(function (Address $a) {
-            return $a->toString();
-        }, $addresses);
+        return array_map(fn (Address $a) => $a->toString(), $addresses);
     }
 
     protected function getLogger(): LoggerInterface
@@ -118,7 +120,7 @@ abstract class AbstractTransport implements TransportInterface
         return $this->logger;
     }
 
-    private function checkThrottling()
+    private function checkThrottling(): void
     {
         if (0 == $this->rate) {
             return;
@@ -127,7 +129,7 @@ abstract class AbstractTransport implements TransportInterface
         $sleep = (1 / $this->rate) - (microtime(true) - $this->lastSent);
         if (0 < $sleep) {
             $this->logger->debug(sprintf('Email transport "%s" sleeps for %.2f seconds', __CLASS__, $sleep));
-            usleep($sleep * 1000000);
+            usleep((int) ($sleep * 1000000));
         }
         $this->lastSent = microtime(true);
     }
